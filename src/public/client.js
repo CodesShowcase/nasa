@@ -1,6 +1,10 @@
+// const { Map } = require('immutable');
+
 let store = {
     user: { name: "Student" },
     apod: '',
+    latestimages: '',
+    manifest: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
 }
 
@@ -19,7 +23,8 @@ const render = async (root, state) => {
 
 // create content
 const App = (state) => {
-    let { rovers, apod } = state
+    console.log(state);
+    let { latestimages, manifest, rovers, apod } = state
 
     return `
         <header></header>
@@ -37,6 +42,7 @@ const App = (state) => {
                     but generally help with discoverability of relevant imagery.
                 </p>
                 ${ImageOfTheDay(apod)}
+                ${TheManifest(latestimages, 'curiosity')}
             </section>
         </main>
         <footer></footer>
@@ -64,6 +70,17 @@ const Greeting = (name) => {
 }
 
 // Example of a pure function that renders infomation requested from the backend
+
+const TheManifest = (manifest, rover) => {
+
+//    getManifest(store, 'curiosity')
+    getLatestImages(store, 'curiosity')
+    console.log(store)
+
+    return ''
+
+}
+
 const ImageOfTheDay = (apod) => {
 
     // If image does not already exist, or it is not from today -- request it again
@@ -101,5 +118,25 @@ const getImageOfTheDay = (state) => {
         .then(res => res.json())
         .then(apod => updateStore(store, { apod }))
 
-    return data
+//    return data
+}
+
+const getLatestImages = (state, rover) => {
+    let { latestimages } = state
+
+    fetch(`http://localhost:3000/images/${rover}`)
+        .then(res => res.json())
+        .then(latestimages => updateStore(store, { latestimages }))
+
+//    return data
+}
+
+const getManifest = (state, rover) => {
+    let { manifest } = state
+
+    fetch(`http://localhost:3000/manifest/${rover}`)
+        .then(res => res.json())
+        .then(rover => updateStore(store, { rover }))
+
+//    return data
 }

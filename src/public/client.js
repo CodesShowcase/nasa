@@ -4,7 +4,7 @@ let store = {
     user: { name: "Student" },
     apod: '',
     latestimages: '',
-    manifest: '',
+    roverfacts: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
 }
 
@@ -24,7 +24,7 @@ const render = async (root, state) => {
 // create content
 const App = (state) => {
     console.log(state);
-    let { latestimages, manifest, rovers, apod } = state
+    let { latestimages, roverfacts, rovers, apod } = state
 
     return `
         <header></header>
@@ -42,7 +42,8 @@ const App = (state) => {
                     but generally help with discoverability of relevant imagery.
                 </p>
                 ${ImageOfTheDay(apod)}
-                ${TheManifest(latestimages, 'curiosity')}
+                ${LatestImages(latestimages, 'curiosity')}
+                ${TheManifest(roverfacts, 'curiosity')}
             </section>
         </main>
         <footer></footer>
@@ -71,10 +72,20 @@ const Greeting = (name) => {
 
 // Example of a pure function that renders infomation requested from the backend
 
-const TheManifest = (manifest, rover) => {
+const LatestImages = (latestimages, rover) => {
 
 //    getManifest(store, 'curiosity')
     getLatestImages(store, 'curiosity')
+    console.log(store)
+
+    return ''
+
+}
+
+const TheManifest = (roverfacts, rover) => {
+
+//    getManifest(store, 'curiosity')
+    getTheManifest(store, 'curiosity')
     console.log(store)
 
     return ''
@@ -118,7 +129,7 @@ const getImageOfTheDay = (state) => {
         .then(res => res.json())
         .then(apod => updateStore(store, { apod }))
 
-//    return data
+        return ''
 }
 
 const getLatestImages = (state, rover) => {
@@ -128,15 +139,15 @@ const getLatestImages = (state, rover) => {
         .then(res => res.json())
         .then(latestimages => updateStore(store, { latestimages }))
 
-//    return data
+    return ''
 }
 
-const getManifest = (state, rover) => {
-    let { manifest } = state
+const getTheManifest = (state, rover) => {
+    let { roverfacts } = state
 
     fetch(`http://localhost:3000/manifest/${rover}`)
         .then(res => res.json())
-        .then(rover => updateStore(store, { rover }))
+        .then(roverfacts => updateStore(store, { roverfacts }))
 
-//    return data
+        return ''
 }

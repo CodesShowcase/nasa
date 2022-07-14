@@ -2,7 +2,7 @@
 
 ## Warning
 
-This project was started, but some projects were just in the nanodegree marked as extracurricular. Some of these projects were actually not really part of the program anymore.
+This project was started, but it was marked as extracurricular. Some of these (extracurricular) projects were actually not really part of the program anymore.
 
 Here the problem was, that actually just one of the rovers was still in play. The other two were already "retired", so I also retired the project.
 

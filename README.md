@@ -1,5 +1,15 @@
 # Functional Programming with Javascript 
 
+## Warning
+
+This project was started, but some projects were just in the nanodegree marked as extracurricular. Some of these projects were actually not really part of the program anymore.
+
+Here the problem was, that actually just one of the rovers was still in play. The other two were already "retired", so I also retired the project.
+
+Is this version working? Just try it, but I must warn you, since I never handed it in and it is not polished.
+
+So you might have a somewhat working version (and yes, I have a working version, which I have not pushed so far), but the whole thing is more or less just a proof of concept, since two rovers are already retired.
+
 ## Student Instructions
 
 ### Big Picture
